@@ -1,7 +1,7 @@
 <div class="row">  
-  <h2 class="mat-h2">Message Us!</h2>
   <div class="panels">
-    <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+    <h2 class="mat-h2">Message Us!</h2>
+    <form [formGroup]="messageForm" #formDirective="ngForm" (ngSubmit)="onSubmit(formDirective)">
       <div>
         <mat-form-field class="form-field-full-width">
           <mat-label>First Name</mat-label>
@@ -57,6 +57,7 @@
     </form>
   </div>
   <div class="panels">
+    <h2 class="mat-h2">Admin Accessible - Click to view</h2>
     <app-message-collection></app-message-collection>
   </div>
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormArray, FormBuilder, FormControl, Validators} from '@angular/forms';
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroupDirective, Validators} from '@angular/forms';
 import { MessageService } from './service/message-service.service';
 import { Message } from './model/message-class';
 
@@ -29,7 +29,7 @@ export class MessageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(): void {
+  onSubmit(formDirective: FormGroupDirective): void {
     const message = new Message(
       this.messageService.getId(),
       this.messageForm.value.firstName,
@@ -39,6 +39,7 @@ export class MessageComponent implements OnInit {
       this.messageForm.value.message
     );
     this.messageService.addMessage(message);
+    formDirective.resetForm();
     this.messageForm.reset();
 
   }
