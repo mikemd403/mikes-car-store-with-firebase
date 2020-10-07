@@ -1,0 +1,13 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let message of messageCollection" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Id: {{message.id}} - {{message.firstName}} {{message.lastName}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{message.phoneNumber}} - {{message.email}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>{{message.message}}</p>
+  </mat-expansion-panel>
+</mat-accordion>

@@ -11,12 +11,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { MessageComponent } from './message/message.component';
+import { MessageCollectionComponent } from './message/message-collection/message-collection.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { MessageComponent } from './message/message.component';
     HomeComponent,
     AboutComponent,
     LoginComponent,
-    MessageComponent
+    MessageComponent,
+    MessageCollectionComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ import { MessageComponent } from './message/message.component';
     MatListModule,
     MatFormFieldModule,
     MatInputModule,
-    TextFieldModule
+    TextFieldModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

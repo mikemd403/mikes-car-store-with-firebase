@@ -1,55 +1,62 @@
-<h2 class="mat-h2">Message Us!</h2>
-<form class="form" [formGroup]="messageForm" (ngSubmit)="onSubmit()">
-  <div>
-    <mat-form-field class="form-field-full-width">
-      <mat-label>First Name</mat-label>
-      <input matInput formControlName="firstName">
-      <mat-error *ngIf="firstName.hasError('required')">
-        Required - Please enter your first name.
-      </mat-error>
-    </mat-form-field>
+<div class="row">  
+  <h2 class="mat-h2">Message Us!</h2>
+  <div class="panels">
+    <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+      <div>
+        <mat-form-field class="form-field-full-width">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName">
+          <mat-error *ngIf="firstName.hasError('required')">
+            Required - Please enter your first name.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="form-field-full-width">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName">
+          <mat-error *ngIf="lastName.hasError('required')">
+            Required - Please enter your last name.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="form-field-full-width">
+          <mat-label>Phone Number</mat-label>
+          <input matInput formControlName="phoneNumber">
+          <mat-error *ngIf="!phoneNumber.valid">
+            10 digits long, first & fourth digit non-zero.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="form-field-full-width">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+          <mat-error *ngIf="!email.valid">
+            Must be in email format - example@example.com
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="form-field-full-width">
+          <mat-label>Message</mat-label>
+          <textarea 
+            matInput placeholder="Ex. I need help with..." 
+            formControlName="message"
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="5"></textarea>
+          <mat-error *ngIf="message.hasError('required')">
+            Required - Please enter a message.
+          </mat-error>
+        </mat-form-field>
+      </div>
+        <button mat-flat-button color="primary" type="submit" [disabled]="messageForm.invalid">SUBMIT</button>
+    </form>
   </div>
-  <div>
-    <mat-form-field class="form-field-full-width">
-      <mat-label>Last Name</mat-label>
-      <input matInput formControlName="lastName">
-      <mat-error *ngIf="lastName.hasError('required')">
-        Required - Please enter your last name.
-      </mat-error>
-    </mat-form-field>
+  <div class="panels">
+    <app-message-collection></app-message-collection>
   </div>
-  <div>
-    <mat-form-field class="form-field-full-width">
-      <mat-label>Phone Number</mat-label>
-      <input matInput formControlName="phoneNumber">
-      <mat-error *ngIf="!phoneNumber.valid">
-        10 digits long, first & fourth digit non-zero.
-      </mat-error>
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field class="form-field-full-width">
-      <mat-label>Email</mat-label>
-      <input matInput formControlName="email">
-      <mat-error *ngIf="!email.valid">
-        Must be in email format - example@example.com
-      </mat-error>
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field class="form-field-full-width">
-      <mat-label>Message</mat-label>
-      <textarea 
-        matInput placeholder="Ex. I need help with..." 
-        formControlName="message"
-        cdkTextareaAutosize
-        #autosize="cdkTextareaAutosize"
-        cdkAutosizeMinRows="1"
-        cdkAutosizeMaxRows="5"></textarea>
-      <mat-error *ngIf="message.hasError('required')">
-        Required - Please enter a message.
-      </mat-error>
-    </mat-form-field>
-  </div>
-    <button mat-flat-button color="primary" type="submit" [disabled]="messageForm.invalid">SUBMIT</button>
-</form>
+</div>
