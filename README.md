@@ -1,4 +1,8 @@
-# CarStore
+# Student
+
+Mike Diep 8334439
+
+# Mike's Car Store
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.1.
 
