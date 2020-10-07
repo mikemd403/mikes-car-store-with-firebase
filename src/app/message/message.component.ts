@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormControl, Validators} from '@angular/forms';
+import { MessageService } from './service/message-service.service';
+import { Message } from './model/message-class';
 
 
 @Component({
@@ -21,14 +23,24 @@ export class MessageComponent implements OnInit {
   get message(): AbstractControl {return this.messageForm.get('message')}
   get phoneNumber(): AbstractControl {return this.messageForm.get('phoneNumber')}
   get email(): AbstractControl {return this.messageForm.get('email')}
-  
-  constructor(private builder: FormBuilder) { }
+
+  constructor(private builder: FormBuilder, private messageService: MessageService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(): void {
-    
+    const message = new Message(
+      this.messageService.getId(),
+      this.messageForm.value.firstName,
+      this.messageForm.value.lastName,
+      this.messageForm.value.phoneNumber,
+      this.messageForm.value.email,
+      this.messageForm.value.message
+    );
+    this.messageService.addMessage(message);
+    this.messageForm.reset();
+
   }
 
 }
