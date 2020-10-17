@@ -20,6 +20,10 @@ import { LoginComponent } from './login/login.component';
 import { MessageComponent } from './message/message.component';
 import { MessageCollectionComponent } from './message/message-collection/message-collection.component';
 
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +47,9 @@ import { MessageCollectionComponent } from './message/message-collection/message
     MatFormFieldModule,
     MatInputModule,
     TextFieldModule,
-    MatExpansionModule
+    MatExpansionModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

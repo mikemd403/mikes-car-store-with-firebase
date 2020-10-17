@@ -1,6 +1,7 @@
 export class Message {
   constructor(
-    public id: number,
+    public id: string,
+    public messageNum: number,
     public firstName: string,
     public lastName: string,
     public phoneNumber: string,

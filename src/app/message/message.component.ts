@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroupDirective, Validators} from '@angular/forms';
 import { MessageService } from './service/message-service.service';
 import { Message } from './model/message-class';
-
+import { MessageDbService } from './firestore/message-db.service';
 
 @Component({
   selector: 'app-message',
@@ -10,6 +10,7 @@ import { Message } from './model/message-class';
   styleUrls: ['./message.component.css']
 })
 export class MessageComponent implements OnInit {
+  @Output() fireSave: EventEmitter<Message> = new EventEmitter;
   messageForm = this.builder.group({
     firstName: ['', [Validators.required]],
     lastName: ['', [Validators.required]],
@@ -24,13 +25,15 @@ export class MessageComponent implements OnInit {
   get phoneNumber(): AbstractControl {return this.messageForm.get('phoneNumber')}
   get email(): AbstractControl {return this.messageForm.get('email')}
 
-  constructor(private builder: FormBuilder, private messageService: MessageService) { }
+  constructor(private builder: FormBuilder, private messageService: MessageService,
+            private store: MessageDbService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(formDirective: FormGroupDirective): void {
     const message = new Message(
+      null,
       this.messageService.getId(),
       this.messageForm.value.firstName,
       this.messageForm.value.lastName,
@@ -38,6 +41,14 @@ export class MessageComponent implements OnInit {
       this.messageForm.value.email,
       this.messageForm.value.message
     );
+    this.store.createMessage(message)
+      .then(
+        docRef => {
+          message.id = docRef.id;
+        }
+      )
+      .catch();
+    this.fireSave.emit(message);
     this.messageService.addMessage(message);
     formDirective.resetForm();
     this.messageForm.reset();

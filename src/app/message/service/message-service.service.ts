@@ -6,7 +6,7 @@ import { Message } from '../model/message-class';
 })
 export class MessageService {
   private messages = [
-    new Message(0, 'John', 'Snow', '6138551887','jsnow@uottawa.ca','I want to buy a new car')
+    new Message(null, 0, 'John', 'Snow', '6138551887','jsnow@uottawa.ca','I want to buy a new car')
   ];
 
   private id = 1;
